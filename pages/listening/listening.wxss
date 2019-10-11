@@ -1,0 +1,114 @@
+/* pages/listening/listening.wxss */
+ view{
+    position: relative;
+    z-index: 0;
+} 
+.page{
+    overflow: hidden;
+}
+.back,.mongolia{
+    width:100%;
+    filter: blur(13px);
+    background-color:rgba(0,0,0,0.5);
+    position: absolute;
+    top:0;
+    z-index: 0; 
+}
+.title{
+    color:white;
+    background:linear-gradient(black,transparent);
+    padding:20rpx;
+    text-align: center;
+}
+
+.singerImg{
+    width:55%;
+    height:450rpx;
+    margin:30rpx auto;
+    border:2px solid white;
+}
+.singerImg image{
+    width: 100%;
+    height: 100%;
+    border-radius: 0px;
+}
+
+.lyric{
+    width:100%;
+    height:200rpx;
+    margin:50rpx 0 20rpx; 
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+}
+.lyric > view{
+    position: absolute;
+    top:-64rpx;
+    transition:all .3s linear;
+}
+.lyric text{
+    display: block;
+    white-space: nowrap;
+    width:100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: 35rpx;
+    box-sizing: border-box;
+    padding:10rpx 20rpx;
+    text-align: center;
+    color:rgb(244,244,244);
+}
+.lyric .now{
+    color:yellow;
+    font-size: 40rpx;
+}
+.body-view{
+    flex: 5;
+    margin:20rpx auto
+}
+.section .start,.section .end{
+    text-align: center;
+    align-self: center;
+    flex: 1;
+    color:white;
+    font-size:30rpx;
+}
+.section{
+    padding: 20rpx;
+    position: relative;
+    display: flex;
+}
+/*音乐控件  */
+.audioControl{
+    display: flex;
+    position: relative;
+    z-index:100;
+    justify-content: center;
+}
+.audioControl .iconfont{
+    color:white;
+    text-align: center;
+}
+.iconfont:before{
+    font-size: 60rpx;
+}
+
+/*播放列表  */
+.songList{
+    background:rgba(0,0,0,1);
+    padding:30rpx 20rpx 20rpx;
+    position: absolute;
+    z-index: 1000;
+    max-height: 500rpx;
+    overflow: scroll;
+    transition: all 0.3s ease-out;
+}
+.songList > view{
+    padding: 20rpx 20rpx;
+    background:rgba(255,255,255,0.2);
+    color:white;
+    border-radius: 10px;
+    margin-bottom: 20rpx;
+}

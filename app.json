@@ -1,0 +1,26 @@
+{
+  "pages":[
+    "pages/index/index",
+    "pages/listening/listening",
+    "pages/myList/myList",
+    "pages/search/search",
+
+    "pages/detail/recommend/list/list",
+    "pages/detail/recommend/detail/detail",
+
+    "pages/detail/singer/detail/detail",
+    "pages/detail/singer/list/list",
+
+    "pages/detail/newSong/newSong",
+
+    "pages/detail/ranking/ranking",
+
+    "pages/logs/logs"
+  ],
+  "window":{
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#000",
+    "navigationBarTitleText": "YJ音乐",
+    "navigationBarTextStyle": "white"
+  }
+}

@@ -1,0 +1,17 @@
+<!--pages/detail/ranking/ranking.wxml-->
+<import src="../../common/audioControl.wxml" />
+
+<view class="title">{{infoList.rankname}}</view>
+<view class="banner" style="background:url({{infoList.banner7url}}) 50%;background-size:100%;">
+  <text class="nickName">更新时间：{{infoList.update_frequency}}</text> 
+</view>  
+
+<view class="container">
+  <view class="container_row" wx:for="{{songList}}" wx:key="index">
+    <text class="iconfont icon-tianjia " style="margin-right:20rpx;margin-left:-40rpx" bindtap='addMyList' data-info="{{item}}"></text>
+      <view class="songName">{{item.filename}}</view>
+    <view class="iconfont icon-iconfontbofang"  data-info="{{item}}" bindtap="playSong"></view>
+  </view>
+</view>
+
+<template is="audioControl" data="{{...data}}" />

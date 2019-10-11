@@ -1,0 +1,51 @@
+<!--pages/listening/listening.wxml-->
+<!--背景图  -->
+<view class="back" style='height:100vh;background:url({{playSongInfo.img}}) 50% ;background-size:auto 100%'></view>
+<!--半透明蒙层  -->
+<view class="mongolia" style='height:100vh;'></view>
+
+<!--主体内容  -->
+<view  class="page" style='height:100vh;' bindtap='hiddenAudioList'>
+
+  <view class="title">{{playSongInfo.song_name}}</view>
+
+  <!--歌手图片  -->
+  <view>
+    <view class="singerImg">
+      <image src="{{playSongInfo.img}}"></image>
+    </view>
+  </view>
+  
+
+  <!--歌词  -->
+  <view class="lyric">
+    <view style="top:{{ rectHeight * (number - 1) }}px">
+        <text class="{{ index == number ? 'now' : 'none lyricText' }}" wx:for="{{ lrcText }}" wx:key="{{ index }}">{{ item }}</text>
+    </view>
+  </view>
+
+  <!--进度条  -->
+  <view class="section section_gap">
+    <view class="start">{{nowMin}}</view>
+    <view class="body-view">
+      <slider bindchange="sliderChange" min='0' max='{{playSongInfo.timelength / 1000}}' value='{{nowSec}}' activeColor='lightblue'/>
+    </view>
+    <view class="end">{{endTime}}</view>
+  </view>
+
+  <!--音乐控件  -->
+  <view class="audioControl">
+    <view class="iconfont {{playModelClass}}" catchtap="playModel"></view> 
+    <view class="iconfont icon-shangyishou" catchtap='nextAudio' data-flag='{{false}}'></view>
+    <view class="iconfont {{pauseClass[1]}}" catchtap='pauseAudio'></view>
+    <view class="iconfont icon-xiayishou" catchtap='nextAudio' data-flag='{{true}}'></view>
+    <view class="iconfont icon-bofangliebiao" catchtap="showSongsList"></view> 
+  </view> 
+
+  <!--歌曲列表  -->
+    <view class="songList" style="bottom:{{ bottom }}rpx">
+      <view wx:for="{{mySongList}}" wx:key="index" catchtap='chooseAudio' data-info="{{item}}">{{ item.filename || item.audio_name}}</view>
+  </view> 
+
+</view>
+

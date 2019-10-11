@@ -1,0 +1,23 @@
+<!--pages/recommend/recommend.wxml      更多歌单-->
+<import src="../../../common/audioControl.wxml" />
+
+<view class="recommend_title title">歌单</view>
+<view class="recommend" wx:for="{{recommendList}}" wx:key="{{index}}"  bindtap="goRecommendDetail" data-info="{{item}}">
+  <view>
+    <view class="playCount">
+      <view class="iconfont icon-erji"></view>
+        <text>{{item.playcount}}</text> 
+    </view>
+    <image src="{{item.imgurl}}"></image>
+    <view class="user">
+      <view class="user_avatar">
+          <image src="{{item.user_avatar}}"></image> 
+      </view>
+      <text class="username">{{item.username}}</text>
+    </view>
+  </view>
+  <text>{{item.specialname}}</text> 
+</view>
+
+<template is="audioControl" data="{{...data}}"></template>
+

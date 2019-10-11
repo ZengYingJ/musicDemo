@@ -1,0 +1,62 @@
+/* pages/search/search.wxss */
+.header{
+    padding:50rpx 30rpx;
+    display: flex;
+}
+.header input{
+    flex:6;
+    padding:20rpx 20rpx;
+    color:white;
+    border: 1px solid rgba(255,255,255,0.3);
+    border-radius: 5px;
+}
+.header .iconfont{
+    flex:1;
+    align-self: left;
+    color:white;
+    text-align: center;
+    font-size:70rpx;
+}
+
+/*热门搜索  */
+.hotSearch{
+    padding:40rpx 20rpx 0 20rpx;
+    border-top:1px solid rgba(255,255,255,0.4);
+}
+.hotSearch .title{
+    font-size: 33rpx;
+    color:white;
+}
+.hotSearch text{
+    padding:10rpx 20rpx;
+    font-size: 30rpx;
+    border-radius: 50px;
+    margin:30rpx 30rpx 0 0;
+    display: inline-block; 
+    background:rgba(255,255,255,0.3);
+    color:white;
+}
+/*搜索结果  */
+.searchResult{
+    color:white;
+    margin-top:20rpx;
+    font-size: 30rpx;
+    padding:20rpx 20rpx;
+    background:rgba(0,0,0,0.5);
+    display: flex;
+}
+.searchResult .iconfont{
+    flex:1;
+    align-self: center;
+    background:none;
+    margin:0px;
+    padding:0px;
+}
+.searchResult .icon-iconfontbofang{
+    text-align: right;
+}
+.searchResult .songname{
+    flex:9;
+    align-self: center;
+}
+

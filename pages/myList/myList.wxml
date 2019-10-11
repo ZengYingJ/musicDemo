@@ -1,0 +1,31 @@
+<!--pages/myList/myList.wxml-->
+<import src="../common/audioControl.wxml" />
+<!--用户信息  -->
+<view class="header">
+    <view class="userImg">
+        <image src="{{userInfo.avatarUrl}}"></image>
+    </view>
+    <view class="userInfo">
+        <text>来自 {{userInfo.nickName}}</text>
+        <text>共有{{total}}首歌</text>
+    </view>
+</view>
+
+<!--编辑菜单-->
+<view class="mean">
+    <view class="iconfont {{playModelClass}}" bindtap="playModel">{{playModel}}</view>
+    <view class="iconfont icon-bianji" bindtap="cleanModel">编辑</view>
+</view>
+
+<!--歌曲列表为空时  -->
+<view class='tips' wx:if="{{songListNumber == 0}}">列表空荡荡的，快去收藏一些歌曲吧</view>
+<!--歌曲列表  -->
+<view class="songList" wx:else>
+    <view class="row" wx:for="{{mySongList}}" wx:key="{{index}}">
+        <view wx:if="{{clean}}" class="iconfont icon-shanchu" style="margin:0 20rpx 0 -40rpx" bindtap='removeSong' data-hash="{{item.hash}}"></view>
+        <view class="songname">{{item.audio_name}}</view>
+        <view class="iconfont icon-iconfontbofang" data-info="{{item}}" bindtap="playSong"></view>
+    </view>
+</view>
+
+<template is="audioControl" data="{{...data}}"></template>

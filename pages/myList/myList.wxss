@@ -1,0 +1,82 @@
+/* pages/myList/myList.wxss */
+.header{
+    display: flex;
+    height:300rpx;
+    border-bottom:1px solid rgba(255,255,255,0.3);
+}
+.header .userImg{
+    flex:2;
+    height:100%;
+    display: flex;
+    justify-content: center;
+}
+.header .userImg image{
+    width:68%;
+    height: 68%;
+    align-self: center;
+    border:2px solid white;
+    border-radius: 50%;
+}
+.header .userInfo{
+    flex:3;
+    align-self: center;
+    padding-left:20rpx;
+    display: flex;
+    justify-content: space-around;
+    flex-direction: column;
+    font-size:33rpx;
+    color:white;
+}
+
+.tips{
+    padding: 10rpx 0;
+    text-align: center;
+    color:white;
+    font-size:30rpx;
+    background:rgba(0,0,0,0.5);
+}
+
+/*编辑菜单  */
+.mean{
+    display: flex;
+    padding:20rpx 0;
+    border-top:1px solid rgba(255,255,255,0.5);
+    border-bottom:1px solid rgba(255,255,255,0.5);
+    background:rgba(0,0,0,0.3);
+    color:white;
+    font-size:33rpx;
+    justify-content: space-around;
+}
+.mean view{
+    text-align: center;
+    display: flex;
+    justify-content: center;
+}
+.mean view:first-of-type{
+  border-right: 1px solid rgba(255,255,255,0.3);
+}
+.mean view::before{
+    margin-right:20rpx;
+}
+
+/*歌曲列表  */
+.songList{
+    padding: 20rpx;
+    margin-top:20rpx;
+}
+.songList .row{
+    display: flex;
+    margin-bottom: 20rpx;
+    background:rgba(0,0,0,0.5);
+    padding:10rpx 20rpx;
+    border-radius: 10px;
+    color:white;
+}
+.songList .row .iconfont{
+    flex:1;
+    text-align: right;
+    align-self: center;
+}
+.songList .songname{
+    flex:6;
+}
