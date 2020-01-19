@@ -1,2 +1,0 @@
-# musicDemo
-music miniapp demo

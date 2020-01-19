@@ -1,26 +1,26 @@
 {
-  "pages":[
-    "pages/index/index",
-    "pages/listening/listening",
-    "pages/myList/myList",
-    "pages/search/search",
-
-    "pages/detail/recommend/list/list",
-    "pages/detail/recommend/detail/detail",
-
-    "pages/detail/singer/detail/detail",
-    "pages/detail/singer/list/list",
-
-    "pages/detail/newSong/newSong",
-
-    "pages/detail/ranking/ranking",
-
-    "pages/logs/logs"
-  ],
-  "window":{
-    "backgroundTextStyle": "light",
-    "navigationBarBackgroundColor": "#000",
-    "navigationBarTitleText": "YJ音乐",
-    "navigationBarTextStyle": "white"
-  }
+	"pages": [
+		"pages/index/index",
+		"pages/recommendSongList/recommendSongList",
+		"pages/newSongList/newSongList",
+		"pages/songListDetail/songListDetail",
+		"pages/rankDetail/rankDetail",
+		"pages/singerList/singerList",
+		"pages/singerDetail/singerDetail",
+		"pages/songSearch/songSearch"
+	],
+	"window": {
+		"backgroundTextStyle": "light",
+		"navigationBarBackgroundColor": "#000",
+		"navigationBarTextStyle": "white",
+		"navigationStyle": "custom"
+	},
+	"usingComponents": {
+		"AudioController": "/components/AudioController/AudioController",
+		"Song": "/components/Song/Song",
+		"NavTopBar": "/components/NavTopBar/NavTopBar"
+	},
+	"style": "v2",
+    "sitemapLocation": "sitemap.json",
+    "requiredBackgroundModes": ["audio"]
 }

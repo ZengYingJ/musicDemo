@@ -1,95 +1,86 @@
-<!--pages/index/index.wxml-->
-<!-- 引入播放控件wxml -->
-
-<import src="../common/audioControl.wxml" />
-<!--index.wxml-->
-<view class="header">
-  <view class="search">
-    <!--跳转到个人歌曲收藏页面-->
-    <navigator url='/pages/myList/myList' hover-class='none'>
-      <view class="iconfont icon-yinle"></view>
-      <text>YJMusic</text>
-    </navigator>
-    <navigator url="/pages/search/search" class="iconfont icon-ipad" hover-class='none'></navigator>
-  </view>
-  <view class="navigator">
-    <text class="{{pageState === index ? 'active' : 'none'}}" 
-          bindtap='changePage'
-          wx:for="{{['推荐歌曲','歌曲排行','歌手分类']}}"
-          wx:key="index"
-          data-index="{{index}}">{{item}}</text>
-  </view>
-</view>
-
-<!--推荐歌曲模板-->
-<!-- hidden='{{ pageState !== 0 }}' -->
-<view class="container_recommend" style="opacity:{{ pageState !== 0 ? '0' : '1' }};z-index:{{ pageState !== 0 ? '0' : '1' }}">
-
-    <!--   推荐歌单列表   --> 
-    <view class="recommend_title    title">
-      推荐歌单
-      <navigator class="more" url="/pages/detail/recommend/list/list" hover-class='none'>更多>></navigator>
-    </view>
-    <view class="recommend" wx:for="{{recommendList}}" wx:key="{{index}}" data-info="{{item}}" bindtap="goRecommendDetail" hidden="{{  pageState !== 0 }}">
-      <view>
-        <view class="playCount">
-          <view class="iconfont icon-erji"></view>
-           <text>{{item.playcount}}</text> 
+<view class="container_page page" style="padding-top: {{ pageNavBarTop }}px">
+    <view class="header">
+        <view class="title">
+            <image class="logo" src="/images/logo_kugou_white.png" mode="widthFix"></image>
+            <text>KuGou音乐</text>
         </view>
-        <image src="{{item.imgurl}}"></image>
-        <view class="user">
-          <view class="user_avatar">
-             <image src="{{item.user_avatar}}"></image> 
-          </view>
-          <text class="username">{{item.username}}</text>
+        <image class="button_search" src="/images/icon/search_white.png" mode="widthFix" catchtap="navigateToSongSearch"></image>
+    </view>
+
+    <view class="tabbar">
+        <block wx:for="{{ tabBarList }}" wx:key="{{ index }}">
+            <view class="tabbar_item {{ tabbar === index ? 'selected' : '' }}" bindtap="switchTabBar" data-tab="{{ index }}">
+                <text>{{ item }}</text>
+            </view>
+        </block>
+        <view class="active_line" style="transform:translateX({{ 100 * tabbar }}%) scaleX(.8)"></view>
+    </view>
+
+    <!-- 推荐歌曲 -->
+    <view class="main main_recommend" wx:if="{{ tabbar === 0 }}">
+        <view class="recommend">
+            <view class="title">
+                <text class="title_text">推荐歌单</text>
+                <view class="button_more" bindtap="navigateToRecommendSongList">
+                    <text>更多</text>
+                </view>
+            </view>
+
+            <view class="list_view">
+                <view class="card_view" wx:for="{{ recommendSongList }}" wx:key="{{ index }}">
+                    <SongListCard songList="{{ item }}"/>
+                </view>
+            </view>
         </view>
-      </view>
-      <text>{{item.specialname}}</text> 
-    </view>
 
-    <!--   最新音乐列表   -->
-    <view class="newSong_title  title">
-      最新音乐
-      <navigator url="/pages/detail/newSong/newSong" hover-class='none' class="more">更多>></navigator>
-    </view>
-    <view class="newSong" wx:for="{{newSongList}}" wx:key="index" hidden="{{  pageState !== 0 }}">
-      <view class="newSong_row">
-        <text class="iconfont icon-tianjia " style="margin-right:20rpx" bindtap='addMyList' data-info="{{item}}"></text>
-        <view>
-          <text>{{item.filename}}</text>
-          <text>{{item.remark}}</text>
+        <view class="newsong">
+            <view class="title">
+                <text class="title_text">最新音乐</text>
+                <view class="button_more" bindtap="navigateToNewSongList">
+                    <text>更多</text>
+                </view>
+            </view>
+
+            <view class="list_view">
+                <view class="song_view" wx:for="{{ newSongList }}" wx:key="{{ index }}">
+                    <Song song="{{ item }}" bind:play="playSong"/>
+                </view>
+            </view>
         </view>
-        <view class="iconfont icon-iconfontbofang" data-info="{{item}}" bindtap="playSong"></view>
-      </view>
+
+        <view class="main_bottom" wx:if="{{ newSongList.length > 0 && recommendSongList.length > 0 }}">
+            <text>- 到底了 -</text>
+        </view>
     </view>
 
-    <view style="height:150rpx" wx:if="{{data.playSong}}"></view>
+    <!-- 歌曲排行 -->
+    <view class="main main_rank" wx:elif="{{ tabbar === 1 }}">
+        <view class="rank">
+            <view class="list_view">
+                <view class="card_view" wx:for="{{ songRankList }}" wx:key="{{ index }}">
+                    <SongRankCard song="{{ item }}"/>
+                </view>
+            </view>
+        </view>
+
+        <view class="main_bottom" wx:if="{{ songRankList.length > 0 }}">
+            <text>- 到底了 -</text>
+        </view>
+    </view>
+
+    <!-- 歌手分类 -->
+    <view class="main main_singertype" wx:elif="{{ tabbar === 2 }}">
+        <view class="singertype">
+            <view class="list_view">
+                <view class="card_view" wx:for="{{ singerTypeList }}" wx:key="{{ index }}">
+                    <SingerType song="{{ item }}"/>
+                </view>
+            </view>
+        </view>
+
+        <view class="main_bottom" wx:if="{{ singerTypeList.length > 0 }}">
+            <text>- 到底了 -</text>
+        </view>
+    </view>
 </view>
-
-<!--歌曲排行模板-->
-<!-- hidden='{{ pageState !== 1 }}' -->
-<view class="container" style="opacity:{{ pageState !== 1 ? '0' : '1' }};z-index:{{ pageState !== 1 ? '0' : '1' }}">
-  <view class="rank_row" wx:for="{{rankList}}" wx:key="{{index}}" bindtap="goRankingDetail" data-info="{{item}}" hidden="{{  pageState !== 1 }}">
-    <view class="rank_img">
-      <image src="{{item.imgurl}}"></image>
-    </view> 
-    <view class="rank_txt">{{item.rankname}}</view>
-  </view>
-  <view style="height:150rpx" wx:if="{{data.playSong}}"></view>
-</view>
-
-<!--歌手分类模板-->
-<!-- hidden='{{ pageState !== 2 }}' -->
-<view class="container_singer" style="opacity:{{ pageState !== 2 ? '0' : '1' }};z-index:{{ pageState !== 2 ? '0' : '1' }}">
-  <view class="row" wx:for="{{singerList}}" wx:key="{{index}}"  bindtap="goSingerDetail" data-info="{{item}}" hidden="{{  pageState !== 2 }}">
-    <text>{{item.classname}}</text>
-    <text class="iconfont icon-jiantouyou"></text>
-  </view>
-  <view style="height:150rpx" wx:if="{{data.playSong}}"></view>
-</view>
-
-<!--播放控件模板-->
-<template is="audioControl" data="{{...data}}"></template>
-
-
-
+<AudioController id="AudioController"/>

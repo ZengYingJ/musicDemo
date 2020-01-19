@@ -1,0 +1,18 @@
+<NavTopBar canBack="true" title="{{ navTopBarTitle }}"/>
+<view class="page container_page">
+    <view class="header">
+        <view class="banner_view">
+            <image class="banner_image" src="{{ rankListInfo.banner7url }}" mode="aspectFill"></image>
+            <text class="banner_text">更新时间：{{ rankListInfo.update_frequency }}</text>
+        </view>
+    </view>
+
+    <view class="main">
+        <block wx:for="{{ rankList }}" wx:for-item="rankListItem" wx:for-index="rankListIndex" wx:key="{{ rankListIndex }}">
+            <view class="card" wx:for="{{ rankListItem }}" wx:key="{{ index }}">
+                <Song song="{{ item }}"/>
+            </view>
+        </block>
+    </view>
+</view>
+<AudioController id="AudioController"/>

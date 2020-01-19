@@ -1,0 +1,15 @@
+<NavTopBar canBack="{{ true }}" title="推荐歌单" />
+<view class="page container_page" style="padding-top:{{ pageNavBarTop }}px">
+    <view class="header">
+        <text class="title">推荐歌单</text>
+    </view>
+
+    <view class="main">
+        <block wx:for="{{ recommendSongList }}" wx:for-item="songListItem" wx:for-index="songListIndex" wx:key="{{ songListIndex }}">
+            <view class="card" wx:for="{{ songListItem }}" wx:key="{{ index }}">
+                <SongListCard songList="{{ item }}"/>
+            </view>
+        </block>
+    </view>
+</view>
+<AudioController id="AudioController"/>

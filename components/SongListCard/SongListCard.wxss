@@ -1,0 +1,63 @@
+/* components/SongListCard/SongListCard.wxss */
+.container,
+.container > .song_view{
+    position: relative;
+    width: 100%;
+}
+.container > .song_view > .song_image{
+    position: relative;
+    display: block;
+    width: 100%;
+    min-height: 375rpx;
+    background-color: gray;
+}
+.container > .song_view > .listener_view{
+    position: absolute;
+    left: 0;
+    top: 0;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 15rpx;
+    font-size: 24rpx;
+    color: #ffffff;
+    background-image: linear-gradient(to bottom, rgba(0,0,0,.8), transparent);
+}
+.container > .song_view > .listener_view > .icon_headphone{
+    position: relative;
+    width: 30rpx;
+    height: 30rpx;
+    margin-right: 10rpx;
+}
+.container > .song_view > .uploader_view{
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 15rpx;
+    font-size: 24rpx;
+    color: #ffffff;
+    background-image: linear-gradient(to top, rgba(0,0,0,.8), transparent);
+}
+.container > .song_view > .uploader_view > .uploader_image{
+    position: relative;
+    width: 50rpx;
+    height: 50rpx;
+    border-radius: 50%;
+    margin-right: 10rpx;
+    background-color: #ffffff;
+}
+.container > .title{
+    position: relative;
+    width: 100%;
+    box-sizing: border-box;
+    word-break: break-all;
+    padding: 15rpx;
+    font-size: 28rpx;
+    color: #ffffff;
+}

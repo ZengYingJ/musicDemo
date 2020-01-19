@@ -1,0 +1,14 @@
+<NavTopBar canBack="true" title="{{ navTopBarTitle }}"/>
+<view class="page container_page">
+    <view class="header">
+
+    </view>
+    <view class="main">
+        <block wx:for="{{ singerList }}" wx:for-item="singerListItem" wx:for-index="singerListIndex" wx:key="{{ singerListIndex }}">
+            <view class="card" wx:for="{{ singerListItem }}" wx:key="{{ singerListIndex }}">
+                <SingerCard singer="{{ item }}"/>
+            </view>
+        </block>
+    </view>
+</view>
+<AudioController id="AudioController"/>

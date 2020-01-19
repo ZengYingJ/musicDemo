@@ -1,0 +1,19 @@
+<NavTopBar canBack="true" title="{{ navTopBarTitle }}"/>
+<view class="page container_page">
+    <view class="header">
+        <view class="banner_view">
+            <image class="banner_image" src="{{ songListInfo.imgurl }}" mode="aspectFill"></image>
+            <text class="banner_text">来自：{{ songListInfo.nickname }}</text>
+        </view>
+        <view class="intro_view">
+            <text>{{ songListInfo.intro }}</text>
+        </view>
+    </view>
+
+    <view class="main">
+        <view class="card" wx:for="{{ songList }}" wx:key="{{ index }}">
+            <Song song="{{ item }}"/>
+        </view>
+    </view>
+</view>
+<AudioController id="AudioController"/>

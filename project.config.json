@@ -1,16 +1,36 @@
 {
-	"description": "项目配置文件。",
+	"description": "项目配置文件",
+	"packOptions": {
+		"ignore": []
+	},
 	"setting": {
 		"urlCheck": false,
 		"es6": true,
+		"enhance": true,
 		"postcss": true,
 		"minified": true,
-		"newFeature": true
+		"newFeature": true,
+		"coverView": true,
+		"autoAudits": false,
+		"checkInvalidKey": true,
+		"checkSiteMap": true,
+		"uploadWithSourceMap": true,
+		"babelSetting": {
+			"ignore": [],
+			"disablePlugins": [],
+			"outputPath": ""
+		}
 	},
 	"compileType": "miniprogram",
-	"libVersion": "1.7.0",
+	"libVersion": "2.10.0",
 	"appid": "wx4480777b30c0c48c",
-	"projectname": "My%E9%9F%B3%E4%B9%90",
+	"projectname": "musicPlayer2.0",
+	"debugOptions": {
+		"hidedInDevtools": []
+	},
+	"isGameTourist": false,
+	"simulatorType": "wechat",
+	"simulatorPluginLibVersion": {},
 	"condition": {
 		"search": {
 			"current": -1,
@@ -25,6 +45,10 @@
 			"list": []
 		},
 		"game": {
+			"currentL": -1,
+			"list": []
+		},
+		"gamePlugin": {
 			"current": -1,
 			"list": []
 		},
@@ -32,10 +56,24 @@
 			"current": -1,
 			"list": [
 				{
-					"id": 0,
-					"name": "个人页",
-					"pathName": "pages/myList/myList",
-					"query": ""
+					"id": -1,
+					"name": "更多推荐歌单",
+					"pathName": "pages/recommendSongList/recommendSongList",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "更多最新音乐",
+					"pathName": "pages/newSongList/newSongList",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "搜索",
+					"pathName": "pages/songSearch/songSearch",
+					"scene": null
 				}
 			]
 		}

@@ -1,0 +1,4 @@
+<view class="container" bindtap="navigateToRankDetail">
+    <image class="rank_image" src="{{ song.imgurl }}"></image>
+    <text class="title">{{ song.rankname }}</text>
+</view>

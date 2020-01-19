@@ -1,0 +1,9 @@
+<view class="container">
+    <view class="song_view">
+        <text class="song_text">{{ song.filename }}</text>
+        <text class="song_text">{{ song.remark }}</text>
+    </view>
+
+    <image class="button_like" src="/images/icon/like_white.png" mode="widthFix" catchtap="addToMyLike"></image>
+    <image class="button_play" src="/images/icon/play_circle_white.png" mode="widthFix" catchtap="playSong"></image>
+</view>

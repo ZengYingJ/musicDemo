@@ -1,165 +1,157 @@
-
-/*主题内容 （推荐歌曲）  */
-.container_recommend{
-    padding:0px;
-    position: absolute;
-    top:202rpx;
-    transition: all .5s linear;
-}
-.container_recommend .title{
-    color:white;
-    font-size: 37rpx;
-    margin:30rpx 0 20rpx;
-    padding:0 20rpx;
-    border-left:3px solid red;
+.container_page{
     position: relative;
+    width: 100vw;
+    min-height: 100vh;
 }
-.more{
-    font-size:25rpx;
-    color:white;
-    position: absolute;
-    right:20rpx;
-    bottom:0;
-}
-.recommend{
-    display: inline-block;
-    margin:10rpx 0;
-    width:50%;
-    height:500rpx;
-    overflow: hidden;
-}
-.recommend > view{
-    margin:auto;
+.header{
     position: relative;
-    width:98%;
-    height:75%;
-}
-.recommend image{
-    width:100%;
-    height:100%;
-}
-.recommend > text{
-    display: block;
-    color:white;
-    font-size:30rpx;
-    margin:20rpx 0;
-    padding-left:10rpx;
-    width:95%;
-    height:25%;
-}
-.recommend .playCount{
-  position: absolute;
-  color:white;
-  display: flex;
-  white-space: nowrap;
-  justify-content: right;
-  align-items: center;
-  font-size: 25rpx;
-  top:0;
-  padding: 15rpx 10rpx;
-  background:linear-gradient(rgba(0,0,0,0.8),transparent);
-}
-.recommend .playCount > view,.recommend .playCount > test{
-  text-align: right;
-  margin:0 10rpx;
-}
-.recommend .user{
-  background:linear-gradient(transparent,rgba(0,0,0,0.8)); 
-  display: flex; 
-  padding:20rpx 0;
-  position: absolute;
-  font-size: 28rpx;
-  color:rgb(205,205,205);
-  bottom: 0px;
-}
-.recommend .user>text ,.recommend .user>view{
-   display: flex;
-   align-items: center; 
-}
- .recommend .user>.user_avatar{
-  width: 50rpx;
-  background:black;
-  margin:0 10rpx;
-  overflow: hidden;
-  height: 50rpx;
-  border-radius: 50%;
-} 
-
-/*最新音乐*/
-.newSong{
-    padding:0 20rpx;
-}
-.newSong_row{
-    padding:20rpx 0;
-    display: flex;
-    border-bottom: 1px solid rgba(255,255,255,0.3);
-}
-.newSong_row>view{
-    flex:8;
-}
-.newSong_row  text{
-    color:white;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    width:600rpx;
-    white-space: nowrap;    
-    display: block;
-    font-size:30rpx;
-    margin-bottom:5rpx;
-}
-.newSong_row text:last-of-type{
-    font-size:30rpx;
-    color:white;
-}
-.newSong_row .iconfont{
-    flex:1;
-    line-height: 80rpx;
-    text-align: right;
-    color:white;
-}
-
-/*歌曲排行*/
-.rank_row{
-    display: flex;
-    padding:20rpx;
-}
-.rank_img{
-    flex:3;
-    height:230rpx;
-    background:rgb(0,0,0,0.8);
-}
-.rank_img image{
-    width:100%;
-    height:100%;
-}
-.rank_txt{
-    flex:5;
-    color:white;
-    align-self: center;
-    padding-left:50rpx;
-    font-size:40rpx;
-}
-
-/*歌手分类*/
-.container_singer{
-    margin-top:30rpx;
-    padding:20rpx;
-    position: absolute;
-    top:202rpx;
-    transition: all .5s linear;
-}
-.container_singer .row{
-    padding:20rpx;
-    margin-bottom:20rpx;
-    background:rgba(255,255,255,0.3);
-    border-radius: 5px;
-    color:white;
     display: flex;
     justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 30rpx;
+}
+.header > .title{
+    position: relative;
+    display: flex;
+    align-items: center;
+    font-size: 32rpx;
+    font-weight: 600;
+    color: #ffffff;
+}
+.header > .title > .logo{
+    position: relative;
+    width: 56rpx;
+    height: 56rpx;
+    margin-right: 20rpx;
+}
+.header > .button_search{
+    position: relative;
+    width: 50rpx;
+    height: 50rpx;
+}
+.tabbar{
+    position: relative;
+    display: flex;
+    width: 100%;
+    height: 75rpx;
+    padding-bottom: 3rpx;
+    background-color: rgba(255,255,255,.4);
+}
+.tabbar > .tabbar_item{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: 1;
+    height: 100%;
+    font-size: 28rpx;
+    font-weight: 400;
+    color: #ffffff;
+    transition: all .3s linear;
+}
+.tabbar > .selected{
+    font-weight: 600;
+    color: #ee4646;
+}
+.tabbar > .active_line{
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 33.33%;
+    height: 3rpx;
+    background-color: #ee4646;
+    transition: all .3s linear;
+    transform-origin: 50% 50%;
 }
 
-.container{
+.main{
+    position: relative;
+    width: 100%;
+}
+.main > .main_bottom{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 150rpx;
+    font-size: 24rpx;
+    letter-spacing: 2rpx;
+    color: #bababa;
+}
+.recommend,
+.newsong,
+.rank,
+.singertype{
+    position: relative;
+    width: 100%;
+    margin-top: 40rpx;
+}
+.recommend > .title,
+.newsong > .title{
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.recommend > .title > .title_text,
+.newsong > .title > .title_text{
+    position: relative;
+    padding-left: 40rpx;
+    border-left: 6rpx solid red;
+    font-size: 32rpx;
+    color: #ffffff;
+}
+.recommend > .title > .button_more,
+.newsong > .title > .button_more{
+    position: relative;
+    padding-right: 20rpx;
+    font-size: 26rpx;
+    color: #ffffff;
+}
+.recommend > .list_view{
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    margin-top: 30rpx;
+}
+.newsong > .list_view{
+    position: relative;
+    width: 100%;
+    margin-top: 30rpx;
+}
+.recommend > .list_view > .card_view{
+    position: relative;
+    width: 50%;
+    box-sizing: border-box;
+    padding: 10rpx;
+}
+.newsong > .list_view > .song_view,
+.rank > .list_view,
+.rank > .list_view > .card_view,
+.singertype > .list_view > .card_view{
+    position: relative;
+    width: 100%;
+}
+.newsong > .list_view > .song_view:not(:last-of-type)::after{
     position: absolute;
-    top:202rpx;
-    transition: all .5s linear;
+    content: "";
+    left: 25rpx;
+    bottom: 0;
+    width: calc(100% - 50rpx);
+    height: 2rpx;
+    background-color: #bababa;
+    opacity: .2;
+}
+.singertype > .list_view{
+    position: relative;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 0 40rpx;
+}
+.singertype > .list_view > .card_view:not(:last-of-type){
+    margin-bottom: 30rpx;
 }

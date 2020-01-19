@@ -1,0 +1,100 @@
+/* pages/songSearch/songSearch.wxss */
+.container_page{
+    position: relative;
+    width: 100vw;
+}
+.container_page > .header{
+    position: relative;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 30rpx 50rpx;
+}
+.container_page > .header > .input_view{
+    position: relative;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 20rpx 120rpx 20rpx 40rpx;
+    border: 2rpx solid #bababa;
+    border-radius: 20rpx;
+}
+.container_page > .header > .input_view > input{
+    position: relative;
+    width: 100%;
+    font-size: 28rpx;
+    font-weight: 500;
+    color: #ffffff;
+}
+.container_page > .header > .input_view > .icon_search{
+    position: absolute;
+    top: 50%;
+    right: 40rpx;
+    width: 40rpx;
+    height: 40rpx;
+    transform: translateY(-50%);
+}
+.main{
+    position: relative;
+    width: 100%;
+    
+}
+.main > .recommend,
+.main > .recommend > .recommend_view{
+    position: relative;
+    width: 100%;
+}
+.main > .recommend{
+    box-sizing: border-box;
+    padding: 40rpx 50rpx 0;
+}
+.main > .recommend > .recommend_view > .recommend_header_view{
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    font-size: 30rpx;
+    font-weight: 700;
+    color: #ffffff;
+}
+.main > .recommend > .recommend_view > .recommend_content{
+    position: relative;
+    width: 100%;
+    margin: 40rpx 0;
+}
+.main > .recommend > .recommend_view > .recommend_content > .recommend_content_text{
+    position: relative;
+    display: inline-block;
+    white-space: nowrap;
+    padding: 10rpx 20rpx;
+    border-radius: 50px;
+    font-size: 24rpx;
+    background-color: #bababa;
+    color: #272727;
+}
+.main > .recommend > .recommend_view > .recommend_content > .recommend_content_text:not(:last-of-type){
+    margin-bottom: 20rpx;
+    margin-right: 15rpx;
+}
+.result_view,
+.result_view > .card{
+    position: relative;
+    width: 100%;
+}
+.result_view > .card:not(:last-of-type)::after{
+    position: absolute;
+    content: "";
+    left: 25rpx;
+    bottom: 0;
+    width: calc(100% - 50rpx);
+    height: 2rpx;
+    background-color: #bababa;
+    opacity: .2;
+}
+.result_nodata{
+    position: relative;
+    width: 100%;
+    margin-top: 50rpx;
+    text-align: center;
+    font-size: 26rpx;
+    font-weight: #bababa;
+}

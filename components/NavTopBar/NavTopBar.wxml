@@ -1,0 +1,5 @@
+<view class="container" style="padding-top:{{ statusBarHeight }}px;">
+    <image class="icon_back" wx:if="{{ canBack }}" src="/images/icon/arrow_left_white.png" mode="widthFix" bindtap="navigateBack"></image>
+
+    <text class="title" wx:if="{{ title }}">{{ title }}</text>
+</view>

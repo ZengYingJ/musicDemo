@@ -1,0 +1,29 @@
+.container{
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    left: 0;
+    top: 0;
+    z-index: 5;
+    width: 100vw;
+    height: 88rpx;
+    background-image: linear-gradient(to bottom, rgb(39,39,39), transparent);
+}
+.container > .icon_back{
+    position: absolute;
+    left: 15rpx;
+    bottom: 15rpx;
+    width: 50rpx;
+    height: 50rpx;
+}
+.container > .title{
+    position: relative;
+    max-width: 340rpx;
+    font-size: 32rpx;
+    font-weight: 600;
+    color: #ffffff;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}

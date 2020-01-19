@@ -1,0 +1,20 @@
+<NavTopBar canBack="true" title="{{ navTopBarTitle }}"/>
+<view class="page container_page">
+    <view class="header">
+        <image class="banner_image" src="{{ singerInfo.imgurl }}" mode="aspectFill"></image>
+        <view class="intro_text {{ singerIntroEllipsis ? 'intro_text_ellipsis' : '' }}">
+            <text>{{ singerInfo.intro }}</text>
+            
+            <image class="icon_arrow" src="/images/icon/arrow_down_black.png" mode="widthFix" catchtap="switchSingerIntro"></image>
+        </view>
+    </view>
+
+    <view class="main">
+        <block wx:for="{{ songList }}" wx:for-item="songListItem" wx:for-index="songListIndex" wx:key="{{ songListIndex }}">
+            <view class="card" wx:for="{{ songListItem }}" wx:key="{{ index }}">
+                <Song song="{{ item }}"/>
+            </view>
+        </block>
+    </view>
+</view>
+<AudioController id="AudioController"/>

@@ -1,3 +1,7 @@
 {
-  
+  	"usingComponents": {
+		"SongListCard": "/components/SongListCard/SongListCard",
+		"SongRankCard": "/components/SongRankCard/SongRankCard",
+		"SingerType": "/components/SingerType/SingerType"
+	}
 }

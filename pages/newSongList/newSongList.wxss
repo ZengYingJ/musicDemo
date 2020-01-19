@@ -1,0 +1,30 @@
+/* pages/newSongList/newSongList.wxss */
+.container_page{
+    position: relative;
+    width: 100vw;
+}
+.container_page > .banner_swiper{
+    position: relative;
+    width: 100%;
+    height: 300rpx;
+}
+.container_page > .banner_swiper .banner_image{
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+.container_page > .main,
+.container_page > .main > .card{
+    position: relative;
+    width: 100%;
+}
+.container_page > .main > .card:not(:last-of-type)::after{
+    position: absolute;
+    content: "";
+    left: 25rpx;
+    bottom: 0;
+    width: calc(100% - 50rpx);
+    height: 2rpx;
+    background-color: #bababa;
+    opacity: .2;
+}

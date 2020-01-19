@@ -1,247 +1,140 @@
-// pages/index/index.js
-const app = getApp();
-const audio = wx.getBackgroundAudioManager();       //获取全局唯一的背景音频管理器
-var commonJs = require('../common/common.js');      
-
+const App = getApp();
+const Config = require("../../config/Index.js");
+const Utils = require("../../utils/Index.js");
+const { To } = Utils;
 Page({
-  /**
-   * 页面的初始数据
-   */
-  data: {
-    // 播放控件数据
-    data:{
-      playSong: false,  //是否显示控件
-      playSongInfo:{},  //正在播放音频信息
-      playSongClass: false //当前播放状态对应的类名数组
+    behaviors: [Utils.Behavior],
+	data: {
+		pageNavBarTop: App.globalData.pageNavBarTop,
+		tabbar: 0,
+		tabBarList: ["推荐歌曲", "歌曲排行", "歌手分类"],
+		recommendSongList: [],
+		newSongList: [],
+		songRankList: [],
+		singerTypeList: [],
+	},
+	async onLoad(){
+		await this.getRecommendSongList();
+		await this.getNewSongList();
     },
-    recommendList:[], //歌曲推荐列表
-    newSongList:[], //最新歌曲列表
-    rankList:[],  //歌曲排行列表
-    pageStatus1: false,    //歌曲排行的请求状态
-    pageStatus2: false,    //歌手分类的请求状态
-    pageState: 0           //当前所在分页（默认推荐歌曲页）
+    onShow(){
+        this.isPlayingSong();
+    },
 
+	// 切换导航栏
+	switchTabBar(event){
+		const tab = event.currentTarget.dataset.tab;
+		if(tab !== this.data.tabbar){
+			switch(tab){
+				case 0:
+					if(this.data.recommendSongList.length && this.data.newSongList.length === 0){
+						this.getRecommendSongList();
+						this.getNewSongList();
+					}
+					break;
+				case 1:
+					if(this.data.songRankList.length === 0){
+						this.getSongRankList();
+					}
+					break;
+				case 2:
+					if(this.data.singerTypeList.length === 0){
+						this.getSingerTypeList();
+					}
+					break;
+			}
+			this.setData({ tabbar: tab });
+		}
+	},
+
+	// 获取推荐歌单
+	getRecommendSongList(){
+		return new Promise(async resolve => {
+			const [error, res] = await To(Utils.Ajax({ url: Config.Api.getRecommendSongList }));
+
+			if(error)return Utils.WeChat.showModal({ content: "加载推荐歌单失败" });
+
+			const list = res.plist.list.info.slice(0, 6);
+			list.forEach(item => {
+				item.imgurl = item.imgurl.replace("{size}", 400);
+				if(item.playcount > 10000){
+					item.playcount = (item.playcount / 10000).toFixed(2) + "万";
+				}
+			})
+
+			this.setData({
+				recommendSongList: list
+			}, resolve)
+		})
+	},
+
+	// 获取最新音乐
+	getNewSongList(){
+		return new Promise(async resolve => {
+			const [error, res] = await To(Utils.Ajax({ url: Config.Api.getNewSongList }));
+
+			if(error)return Utils.WeChat.showModal({ content: "加载最新音乐失败" });
+
+			const list = res.data.slice(0, 4);
+			this.setData({
+				newSongList: list
+			}, resolve);
+		})
+	},
+
+	// 获取歌曲排行榜
+	getSongRankList(){
+		return new Promise(async resolve => {
+			const [error, res] = await To(Utils.Ajax({ url: Config.Api.getSongRankList }));
+
+			if(error)return Utils.WeChat.showModal({ content: "加载歌曲排行榜失败" });
+
+			const list = res.rank.list;
+			list.forEach(item => {
+				item.imgurl = item.imgurl.replace("{size}/", "");
+			})
+
+			this.setData({
+				songRankList: list
+			}, resolve)
+		})
+	},
+
+	// 获取歌手类型列表
+	getSingerTypeList(){
+		return new Promise(async resolve => {
+			const [error, res] = await To(Utils.Ajax({ url: Config.Api.getSingerTypeList }));
+
+			if(error)return Utils.WeChat.showModal({ content: "加载歌手类型列表失败" });
+			
+			const list = res.list;
+			this.setData({
+				singerTypeList: list
+			}, resolve);
+		})
+    },
     
-  },
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad: function (options) {
-    //监听音乐停止
-    commonJs.onBackgroundAudioStop(this, app, audio)
+    // 播放音乐
+    async playSong(){
+        this.selectComponent("#AudioController").showModal();
+    },
 
-    this.recommendRequest();      //调用获取推荐歌单的方法
-    this.NewSongRequest();        //调用获取最新音乐的方法
-  },
-  //请求获取推荐歌单
-  recommendRequest() {
-    const that = this;
-    // 加载中
-    wx.showLoading({
-      title: 'Loading'
-    })
-    // 请求
-    wx.request({
-      url: "http://m.kugou.com/plist/index&json=true",
-      header: {
-        "contentType": "json"
-      },
-      method: "GET",
-      success: function (res) {
-        //截取前6个歌单
-        let songlist = res.data.plist.list.info.slice(0, 6);
-        //歌单对象里图片需要进行字符串处理
-        for (let i = 0; i < songlist.length; i++) {
-          songlist[i].imgurl = songlist[i].imgurl.split('{size}').join('400');
-          if(songlist[i].playcount > 10000){
-            songlist[i].playcount = Math.round(songlist[i].playcount / 100)/100 + '万';
-          }
-        }
-        //将结果返回到data
-        that.setData({
-          recommendList: songlist
+	// 前往更多推荐歌单 页面
+	navigateToRecommendSongList(){
+		wx.navigateTo({
+			url: "/pages/recommendSongList/recommendSongList"
+		})
+	},
+	// 前往最新音乐歌曲 页面
+	navigateToNewSongList(){
+		wx.navigateTo({
+			url: "/pages/newSongList/newSongList"
+		})
+    },
+    // 前往歌曲搜索 页面
+    navigateToSongSearch(){
+        wx.navigateTo({
+            url: "/pages/songSearch/songSearch"
         })
-      },
-      complete(){
-        if (that.data.newSongList.length > 0) {
-          wx.hideLoading();
-        }
-      }
-    })
-  },
-
-  //请求获取最新音乐
-  NewSongRequest() {
-    wx.showLoading({
-      title: 'Loading'
-    })
-    const that = this;
-    wx.request({
-      url: "http://m.kugou.com/?json=true",
-      method: "GET",
-      header: {
-        "contentType": "json"
-      },
-      success: function (res) {
-        let songlist = res.data.data.slice(0, 4);
-        that.setData({
-          newSongList: songlist
-        })
-      },
-      fail: function (err) {
-        wx.showModal({
-          title: '温馨提示',
-          content: '网络连接失败，请检查是否成功连接网络',
-        })
-      },
-      complete(){
-        if(that.data.recommendList.length > 0){
-          wx.hideLoading();
-        }
-      }
-    })
-  },
-
-  //请求获取歌曲排行列表
-  rankRequest() {
-    wx.showLoading({
-      title: 'Loading'
-    })
-    const that = this;
-    wx.request({
-      url: "http://m.kugou.com/rank/list&json=true",
-      method: "GET",
-      header: { "contentType": "json" },
-      success(res) {
-        let arr = res.data.rank.list;
-        for (let i = 0; i < arr.length; i++) {
-          arr[i].imgurl = arr[i].imgurl.split('{size}/');
-          arr[i].imgurl = arr[i].imgurl.join('');
-        }
-        that.setData({
-          rankList: res.data.rank.list,
-          pageStatus1: true,
-        })
-      },
-      fail: function (err) {
-        wx.showModal({
-          title: '温馨提示',
-          content: '网络连接失败，请检查是否成功连接网络',
-        })
-      },
-      complete() {
-        wx.hideLoading();
-      }
-    })
-  },
-
-  // 请求获取歌手分类列表
-  singerListRequest() {
-    wx.showLoading({
-      title: 'Loading'
-    })
-    const that = this;
-    wx.request({
-      url: "http://m.kugou.com/singer/class&json=true",
-      method: "GET",
-      header: { "contentType": "json" },
-      success(res) {
-        that.setData({
-          singerList: res.data.list,
-          pageStatus2: true,
-        })
-      },
-      fail: function (err) {
-        wx.showModal({
-          title: '温馨提示',
-          content: '网络连接失败，请检查是否成功连接网络',
-        })
-      },
-      complete() {
-        wx.hideLoading();
-      }
-    })
-  },
-
-  // 改变头部选项卡
-  changePage(event){
-    var index = event.currentTarget.dataset.index;
-    switch(index){
-      case 1:
-        if (!this.data.pageStatus1){
-          this.rankRequest();
-        }
-      break;
-      case 2:
-        if (!this.data.pageStatus2) {
-          this.singerListRequest();
-        }
-      break;
     }
-    this.setData({
-      pageState:index
-    })
-  },
-
-  // 获取单曲音频信息
-  playSong(e){
-    if(e.currentTarget){
-      commonJs.setGlobalData(this.data.newSongList, app);  //将当前歌曲所在列表存进全局变量中
-    }
-    commonJs.playSong(e,this);
-  },
-
-  // 暂停播放背景音乐
-  pauseAudio(){
-    commonJs.pauseAudio(this, audio)
-  },
-
-  // 播放下一首
-  nextAudio(){
-    commonJs.nextAudio(this, app)
-  },
-
-  // 收藏歌曲到个人中心
-  addMyList(e){
-    commonJs.addMyList(e);
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow(){
-    commonJs.onShow(this);
-  },
-
-  //跳转到当前播放列表
-  goListening(e) {
-    commonJs.goListening(this, app)
-  },
-
-  goRecommendDetail(e) {
-    var title = e.currentTarget.dataset.info.specialname;
-    var id = e.currentTarget.dataset.info.specialid;
-
-    wx.navigateTo({
-      url: '/pages/detail/recommend/detail/detail?id=' + id + '&title=' + title
-    })
-  },
-
-  goRankingDetail(e){
-    var title = e.currentTarget.dataset.info.rankname;
-    var id = e.currentTarget.dataset.info.rankid;
-    
-    wx.navigateTo({
-      url: '/pages/detail/ranking/ranking?rankid=' + id + '&title=' + title
-    })
-  },
-
-  goSingerDetail(e){
-    var id = e.currentTarget.dataset.info.classid;
-    var title = e.currentTarget.dataset.info.classname;
-
-    wx.navigateTo({
-      url: '/pages/detail/singer/list/list?classid=' + id + '&title=' + title
-    })
-  }
 })

@@ -1,0 +1,4 @@
+<view class="container" bindtap="navigateToSingerDetail">
+    <image class="singer_image" src="{{ singer.imgurl }}" mode="widthFix"></image>
+    <text class="singer_text">{{ singer.singername }}</text>
+</view>

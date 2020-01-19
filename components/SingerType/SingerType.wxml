@@ -1,0 +1,4 @@
+<view class="container" bindtap="navigateToSingerList">
+    <text class="title">{{ song.classname }}</text>
+    <image class="icon_arrow" src="/images/icon/arrow_right_white.png" mode="widthFix"></image>
+</view>

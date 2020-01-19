@@ -1,0 +1,42 @@
+<NavTopBar canBack="true" title="搜索"/>
+<view class="page container_page">
+    <view class="header">
+        <view class="input_view">
+            <input type="text" value="{{ keyword }}" bindinput="keywordInputHandle"/>
+
+            <image class="icon_search" src="/images/icon/search_white.png" mode="widthFix" catchtap="searchButtonHandle"></image>
+        </view>
+    </view>
+
+    <view class="main">
+        <view class="recommend">
+            <view class="recommend_view">
+                <view class="recommend_header_view">
+                    <text class="title_text">热门搜索</text>
+                </view>
+                <view class="recommend_content">
+                    <text 
+                        class="recommend_content_text"
+                        wx:for="{{ hotSearchList }}"
+                        wx:key="{{ index }}"
+                        catchtap="hotSearchHandle"
+                        data-keyword="{{ item.keyword }}"
+                    >{{ item.keyword }}</text>
+                </view>
+            </view>
+        </view>
+
+        <view class="result_view">
+            <block wx:for="{{ songList }}" wx:for-item="songListItem" wx:for-index="songListIndex" wx:key="{{ songListIndex }}">
+                <view class="card" wx:for="{{ songListItem }}" wx:key="{{ index }}">
+                    <Song song="{{ item }}"/>
+                </view>
+            </block>
+
+            <view class="result_nodata" wx:if="{{ songList.length === 0 && searchSuccess }}">
+                <text>搜索不到相关歌曲</text>
+            </view>
+        </view>
+    </view>
+</view>
+<AudioController id="AudioController"/>

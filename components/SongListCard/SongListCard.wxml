@@ -1,0 +1,18 @@
+<view class="container" bindtap="navigateToSongListDetail">
+    <view class="song_view">
+        <image class="song_image" src="{{ songList.imgurl }}" mode="widthFix"></image>
+
+        <view class="listener_view">
+            <image class="icon_headphone" src="/images/icon/headphone_white.png" mode="widthFix"></image>
+            <text>{{ songList.playcount }}</text>
+        </view>
+
+        <view class="uploader_view">
+            <image class="uploader_image" src="{{ songList.user_avatar }}" mode="widthFix"></image>
+            <text>{{ songList.username }}</text>
+        </view>
+    </view>
+    <view class="title">
+        <text>{{ songList.specialname }}</text>
+    </view>
+</view>

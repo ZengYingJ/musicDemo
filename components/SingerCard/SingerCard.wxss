@@ -1,0 +1,23 @@
+/* components/SingerCard/SingerCard.wxss */
+.container{
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 30rpx;
+    border-radius: 20rpx;
+    background-color: rgba(255,255,255,.5);
+}
+.container > .singer_image{
+    position: relative;
+    width: 150rpx;
+    height: 150rpx;
+}
+.container > .singer_text{
+    position: relative;
+    margin-left: 50rpx;
+    font-size: 34rpx;
+    font-weight: 600;
+    color: #373737;
+}

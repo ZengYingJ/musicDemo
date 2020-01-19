@@ -1,0 +1,18 @@
+/* pages/singerList/singerList.wxss */
+.container_page{
+    position: relative;
+    width: 100vw;
+}
+.main{
+    position: relative;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 20rpx 40rpx 60rpx;
+}
+.main > .card{
+    position: relative;
+    width: 100%;
+}
+.main > .card:not(:last-of-type){
+    margin-bottom: 30rpx;
+}

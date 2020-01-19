@@ -1,0 +1,15 @@
+<view class="container" style="transform: translateY({{ modal ? 0 : 100 }}%)">
+    <view class="songdata_view">
+        <image class="singer_image" src="{{ songInfo.img }}" mode="widthFix"></image>
+        <view class="singer_view">
+            <text class="songname_text">{{ songInfo.song_name }}</text>
+            <text class="singer_text">{{ songInfo.author_name }}</text>
+        </view>
+    </view>
+    <view class="buttongroup">
+        <!-- <image class="button button_like" src="/images/icon/like_white.png" mode="widthFix"></image> -->
+        <!-- <image class="button button_play" src="/images/icon/play_white.png" mode="widthFix"></image> -->
+        <image class="button button-pause" src="/images/icon/{{ playStatus ? 'pause' : 'play' }}_white.png" mode="widthFix" catchtap="switchPlayButton"></image>
+        <image class="button button_next" src="/images/icon/next_white.png" mode="widthFix" catchtap="playNextSong"></image>
+    </view>
+</view>

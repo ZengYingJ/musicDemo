@@ -1,0 +1,68 @@
+/* components/AudioController/AudioController.wxss */
+.container{
+    position: fixed;
+    z-index: 50;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    left: 0;
+    bottom: 0;
+    width: 100vw;
+    height: 150rpx;
+    background-color: rgba(0,0,0,.8);
+    transition: all .3s linear;
+}
+.container > .songdata_view{
+    position: relative;
+    display: flex;
+    align-items: center;
+    padding: 10rpx 20rpx;
+}
+.container > .songdata_view > .singer_image{
+    position: relative;
+    width: 130rpx;
+    height: 130rpx;
+    border-radius: 50%;
+    background-color: #000;
+}
+.container > .songdata_view > .singer_view{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 280rpx;
+    margin-left: 20rpx;
+}
+.container > .songdata_view > .singer_view > .songname_text{
+    position: relative;
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-size: 30rpx;
+    font-weight: 600;
+    color: #ffffff;
+}
+.container > .songdata_view > .singer_view > .singer_text{
+    position: relative;
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-size: 24rpx;
+    font-weight: 400;
+    color: #ffffff;
+    opacity: .8;
+}
+.container > .buttongroup{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 20rpx;
+}
+.container > .buttongroup > .button{
+    position: relative;
+    width: 80rpx;
+    height: 80rpx;
+}

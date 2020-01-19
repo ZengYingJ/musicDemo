@@ -1,0 +1,15 @@
+<NavTopBar canBack="{{ true }}" title="最新音乐" />
+<view class="page container_page">
+    <swiper class="banner_swiper" indicator-dots="true" circular="true" autoplay="true" current="0" interval="4000" duration="500">
+        <swiper-item wx:for="{{ bannerList }}" wx:key="{{ index }}">
+            <image class="banner_image" src="{{ item.imgurl }}" mode="widthFix"></image>
+        </swiper-item>
+    </swiper>
+
+    <view class="main">
+        <view class="card" wx:for="{{ newSongList }}" wx:key="{{ index }}">
+            <Song song="{{ item }}"/>
+        </view>
+    </view>
+</view>
+<AudioController id="AudioController"/>

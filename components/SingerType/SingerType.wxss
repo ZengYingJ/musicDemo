@@ -1,0 +1,19 @@
+/* components/SingerType/SingerType.wxss */
+.container{
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 30rpx;
+    font-size: 28rpx;
+    background-color: rgba(255,255,255,.3);
+    border-radius: 20rpx;
+    color: #ffffff;
+}
+.container > .icon_arrow{
+    position: relative;
+    width: 40rpx;
+    height: 40rpx;
+}
